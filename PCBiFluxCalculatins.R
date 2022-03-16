@@ -246,7 +246,12 @@ final.result = function(MW.PCB, H0.mean, H0.error,
     
   }
   
-  F.PCB.aw
+  mmm <-mean(F.PCB.aw) #ng/m2/day
+  sss <- sd(F.PCB.aw) #ng/m2/day
+  q2.5 <- quantile(F.PCB.aw, 0.025, na.rm = TRUE)
+  q97.5 <- quantile(F.PCB.aw, 0.975, na.rm = TRUE)
+  
+  c(mmm, sss, q2.5, q97.5)
   
 }
 
@@ -291,31 +296,9 @@ for (i in 1:Num.Congener) {
                                nOrtho.Cl[i], Kow.mean[i], Kow.error[i]))
 }
 
-# Sum of all congeners per repetition
-final.result <- data.frame(colSums(result))
-
-# Summary of the total PCBs
-mmm <- mean(final.result$colSums.result.)
-sss <- sd(final.result$colSums.result.)
-q2.5 <- quantile(final.result$colSums.result., 0.025)
-q97.5 <- quantile(final.result$colSums.result., 0.975)
-
-tPCBFlux <- c(mmm, sss, q2.5, q97.5)
-names(tPCBFlux) <- c("Mean (pg/m2/d)", "Std (pg/m2/d)",
-                     "2.5%CL (pg/m2/d)", "97.5%CL (pg/m2/d)")
-
-# Plot histogram ----------------------------------------------------------
-
-hist(as.numeric(final.result[,1]), main = "Net Flux Total PCBs Sampling 1",
-     xlab = "Volatilization Flux Total PCB (ng/m2/d)",
-     border = "blue", col = "green",
-     xlim = c(min(as.numeric(final.result[,1])),
-              max(as.numeric(final.result[,1]))))
-abline(v = median(as.numeric(final.result[,1])),
-       col = "blue", lwd = 3)
-abline(v = quantile(as.numeric(final.result[,1]), 0.025),
-       col = "red", lwd = 3)
-abline(v = quantile(as.numeric(final.result[,1]), 0.975),
-       col = "red", lwd = 3)
-abline(v = 0, col = "black", lwd = 3) # include line at flux 0, if necessary
+# Compiling results
+final.result = data.frame(Congener, result)
+names(final.result) = c("Congener", "Mean (pg/m2/d)",
+                        "Std (pg/m2/d)", "2.5%CL (pg/m2/d)",
+                        "97.5%CL (pg/m2/d)")
 
