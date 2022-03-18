@@ -4,7 +4,7 @@
 
 This README file was generated on March 02 2022 by Andres Martinez (ORCID: 0000-0002-0572-1494)
 
-This README file describes R code to calculate the air-water flux of individual PCB congeners from southern Lake Michigan from air and water active samples from September 2010. It includes a Monte Carlo simulation. Net, absorption and volatilization fluxes can be calculated. (i) For net fluxes, keep both air and water concentrations, (ii) for absoprtion, water concentration should be 0 and (iii) for volatilization, air concentration should be 0. This change can be perform in line 245. The code is written to calculate per deployment time, thus concentrations and meteorological data need to be selected. The data can be downloaded from PANGAEA (link), using the R package pangaear (https://cran.microsoft.com/snapshot/2022-01-01/web/packages/pangaear/pangaear.pdf).
+This README file describes R code to calculate the air-water flux of individual PCB congeners from southern Lake Michigan from air and water active samples from September 2010. It includes a Monte Carlo simulation. Net, absorption and volatilization fluxes can be calculated. (i) For net fluxes, keep both air and water concentrations, (ii) for absoprtion, water concentration should be 0 and (iii) for volatilization, air concentration should be 0. This change can be perform in line 245. The code is written to calculate per deployment time, thus concentrations and meteorological data need to be selected. The data can be downloaded from PANGAEA, using the R package pangaear (https://cran.microsoft.com/snapshot/2022-01-01/web/packages/pangaear/pangaear.pdf).
 
 This work was supported by the National Institutes of Environmental Health Sciences (NIEHS) grant #P42ES013661 and the U.S. Environmental Protection Agency’s Great Lakes National Program Office (Grant No. GL-00E00515-0). The funding sponsor did not have any role in study design; in collection, analysis, and/or interpretation of data; in creation of the dataset; and/or in the decision to submit this data for publication or deposit it in a repository.
 
@@ -27,5 +27,9 @@ This section of the ReadMe file provides short instructions on how to download a
 2. Click the "download" button beneath RStudio Desktop
 3. Click the button beneath "Download RStudio Desktop".  This will download the correct installation file based on the operating system detected.
 4. Run the installation file and follow on-screen instructions.
+
+# Notes
+
+To select sampling periods, changes should be performed in lines 26-29 for the air and water concentrations, and lines 40 - 47 for the meteorological parameters, as well as in lines 272 - 278 (i.e., s1 to s6). Further, change will also need to be perform in lines 279 - 283 for selecting the correct Weibull distribution parameters, i.e., e and n.
 
 
